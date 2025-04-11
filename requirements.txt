@@ -1,0 +1,45 @@
+## EMOTION DETECTION
+
+# Core dependencies
+numpy==1.23.5
+tensorflow-macos==2.15.0
+tensorflow-metal==1.1.0
+torch==2.0.1
+torchvision==0.15.2
+torchaudio==2.0.2
+
+# Deep learning models
+mtcnn==1.0.0
+keras==2.15.0
+scipy==1.10.1
+h5py==3.10.0
+tensorboard>=2.15,<2.16
+
+# Face detection and recognition
+ultralytics==8.1.0
+opencv-python==4.11.0.86
+deepface==0.0.86
+facenet-pytorch==2.5.3
+
+# Face tracking (StrongSORT)
+filterpy==1.4.5
+
+# Database (MySQL)
+mysql-connector-python==8.0.33
+
+# Miscellaneous utilities
+pandas==2.0.1
+pillow==9.5.0
+# (pathlib and argparse are included in Python 3.11)
+
+# Distance metrics
+scikit-learn==1.6.1
+
+
+
+
+SQLAlchemy
+pymysql
+python-dotenv
+cryptography
+gdown
