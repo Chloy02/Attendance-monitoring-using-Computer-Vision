@@ -2,8 +2,7 @@
 
 # Core dependencies
 numpy==1.23.5
-tensorflow-macos==2.15.0
-tensorflow-metal==1.1.0
+tensorflow==2.15.0
 torch==2.0.1
 torchvision==0.15.2
 torchaudio==2.0.2
@@ -35,11 +34,9 @@ pillow==9.5.0
 # Distance metrics
 scikit-learn==1.6.1
 
-
-
-
-SQLAlchemy
-pymysql
-python-dotenv
-cryptography
-gdown
+# Additional dependencies
+SQLAlchemy==2.0.23
+pymysql==1.1.0
+python-dotenv==1.0.0
+cryptography==41.0.7
+gdown==4.7.1
