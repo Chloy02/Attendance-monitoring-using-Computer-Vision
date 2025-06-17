@@ -216,23 +216,8 @@ Follow the detailed setup guide in `SETUP_GUIDE.md`
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+This project is part of a Master's course at Christ University. Please respect academic integrity and cite appropriately if used for research purposes.
 
-This project is part of a Master's thesis at Christ University. Please respect academic integrity and cite appropriately if used for research purposes.
-
-## 👨‍💻 Author
-
-**Christina Loy Costa**
-- GitHub: [@Chloy02](https://github.com/Chloy02)
-- Institution: Christ University
-- Project: Master's Thesis in Computer Science
-
-## 📚 Documentation
-
-- [Setup Guide](SETUP_GUIDE.md) - Detailed installation instructions
-- [Technical Presentation](TECHNICAL_PRESENTATION.md) - Comprehensive technical overview
-- [Cloud Setup](CLOUD_DATABASE_SETUP.md) - Cloud deployment instructions
-- [Face Encodings Explained](FACE_ENCODINGS_EXPLAINED.md) - Technical details on face recognition
 
 ## ⚠️ Important Notes
 
