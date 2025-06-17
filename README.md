@@ -36,10 +36,11 @@ A sophisticated real-time attendance monitoring system that uses computer vision
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.10 or higher
+- Python 3.10 most recommended anything higher or lower dependency issues may occur
 - MySQL Server
 - Webcam or video file for testing
-- Linux (Fedora/Ubuntu/Debian) or macOS
+- Linux (Fedora/Ubuntu/Debian) or windows
+- Incase of mac change tensorflow to tensorflow-macos and tenorflow-metal
 
 ### Installation
 
