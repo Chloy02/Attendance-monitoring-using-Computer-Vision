@@ -36,10 +36,11 @@ A sophisticated real-time attendance monitoring system that uses computer vision
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.10 or higher
+- Python 3.10 most recommended anything higher or lower dependency issues may occur
 - MySQL Server
 - Webcam or video file for testing
-- Linux (Fedora/Ubuntu/Debian) or macOS
+- Linux (Fedora/Ubuntu/Debian) or windows
+- Incase of mac change tensorflow to tensorflow-macos and tenorflow-metal
 
 ### Installation
 
@@ -215,23 +216,8 @@ Follow the detailed setup guide in `SETUP_GUIDE.md`
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+This project is part of a Master's course at Christ University. Please respect academic integrity and cite appropriately if used for research purposes.
 
-This project is part of a Master's thesis at Christ University. Please respect academic integrity and cite appropriately if used for research purposes.
-
-## 👨‍💻 Author
-
-**Christina Loy Costa**
-- GitHub: [@Chloy02](https://github.com/Chloy02)
-- Institution: Christ University
-- Project: Master's Thesis in Computer Science
-
-## 📚 Documentation
-
-- [Setup Guide](SETUP_GUIDE.md) - Detailed installation instructions
-- [Technical Presentation](TECHNICAL_PRESENTATION.md) - Comprehensive technical overview
-- [Cloud Setup](CLOUD_DATABASE_SETUP.md) - Cloud deployment instructions
-- [Face Encodings Explained](FACE_ENCODINGS_EXPLAINED.md) - Technical details on face recognition
 
 ## ⚠️ Important Notes
 
