@@ -255,26 +255,50 @@ class mysqlDatabase:
 
     def assignment(self, arr, unk, m, name_list, emotions_list, month_n):
         """
-        Legacy method for backward compatibility
+        Fixed assignment method to correctly log attendance and emotions
+        based on the track history (arr) for the specific track ID (m).
         """
         try:
-            # Process attendance records
-            attendance_records = []
-            for item in arr:
-                if len(item) >= 3:
-                    name, distance, emotion = item[1], item[2], item[3] if len(item) > 3 else "Unknown"
-                    attendance_records.append((name, "Present"))
+            # Filter arr for the specific track ID 'm'
+            # arr structure: [track_id, name, distance, emotion]
+            person_history = [item for item in arr if item[0] == m]
             
-            # Add attendance records
-            if attendance_records:
-                self.batch_add_attendance(attendance_records)
+            if not person_history:
+                logger.warning(f"No history found for track ID {m}")
+                return
+
+            # Determine the name (filter out 'unknown' if possible, or take the most frequent)
+            names = [item[1] for item in person_history if item[1] != 'unknown']
+            if not names:
+                # If only unknown, check if there are any records at all
+                names = [item[1] for item in person_history]
             
-            # Add emotion records
-            for i, (name, emotion) in enumerate(zip(name_list, emotions_list)):
-                if i < len(emotions_list):
+            if not names:
+                 logger.warning(f"Could not determine name for track ID {m}")
+                 return
+
+            # Simple majority vote or just take the last known name
+            # Here we take the most frequent name to be robust
+            from collections import Counter
+            name = Counter(names).most_common(1)[0][0]
+            
+            if name == 'unknown':
+                logger.info(f"Track ID {m} is unknown, skipping DB insertion.")
+                return
+
+            # 1. Add Attendance
+            self.add_attendance(name, "Present")
+            
+            # 2. Add Emotions
+            # Collect all emotions recorded for this person
+            emotions = [item[3] for item in person_history if len(item) > 3]
+            
+            for emotion in emotions:
+                if emotion: # Ensure emotion is not None or empty
                     self.add_emotion(name, emotion)
             
-            logger.info("✅ Assignment completed successfully")
+            logger.info(f"✅ Assignment completed for {name} (Track ID: {m})")
+            
         except Exception as e:
             logger.error(f"Error in assignment: {e}")
 
