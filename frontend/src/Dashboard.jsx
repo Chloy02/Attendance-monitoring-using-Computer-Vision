@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Layout from './components/Layout';
 import { Users, UserCheck, Activity, Calendar, MoreVertical, ArrowUpRight } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from 'recharts';
 
@@ -31,18 +30,16 @@ const Dashboard = () => {
     }, []);
 
     if (loading) return (
-        <Layout>
-            <div className="flex items-center justify-center h-[80vh]">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
-            </div>
-        </Layout>
+        <div className="flex items-center justify-center h-[80vh]">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+        </div>
     );
 
     const emotionData = stats ? Object.entries(stats.emotion_distribution).map(([name, value]) => ({ name, value })) : [];
     const COLORS = ['#6366f1', '#ec4899', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#64748b'];
 
     return (
-        <Layout>
+        <>
             <div className="mb-8 flex items-center justify-between">
                 <div>
                     <h1 className="text-2xl font-bold text-slate-800">Dashboard Overview</h1>
@@ -191,7 +188,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-        </Layout>
+        </>
     );
 };
 

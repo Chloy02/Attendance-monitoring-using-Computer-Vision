@@ -1,9 +1,23 @@
-import Dashboard from './Dashboard'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Dashboard from './Dashboard';
+import Students from './pages/Students';
+import Reports from './pages/Reports';
+import Settings from './pages/Settings';
 
 function App() {
   return (
-    <Dashboard />
-  )
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
+      </Layout>
+    </Router>
+  );
 }
 
-export default App
+export default App;

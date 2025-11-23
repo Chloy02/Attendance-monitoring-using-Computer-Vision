@@ -82,6 +82,69 @@ def get_student_emotions(student_name: str, db: Session = Depends(get_db)):
     
     return emotions
 
+@app.get("/students")
+def get_students(db: Session = Depends(get_db)):
+    """
+    Get list of all students with their latest attendance info.
+    """
+    # Get distinct names
+    students = db.query(Attendance.name).distinct().all()
+    student_list = []
+    
+    for (name,) in students:
+        # Get total attendance count
+        count = db.query(Attendance).filter(Attendance.name == name).count()
+        # Get last seen
+        last_seen = db.query(Attendance.timestamp).filter(Attendance.name == name).order_by(Attendance.timestamp.desc()).first()
+        
+        student_list.append({
+            "name": name,
+            "attendance_count": count,
+            "last_seen": last_seen[0] if last_seen else None,
+            "status": "Active" # Placeholder logic
+        })
+        
+    return student_list
+
+@app.get("/reports/export")
+def export_report(start_date: date = None, end_date: date = None, db: Session = Depends(get_db)):
+    """
+    Export attendance records as CSV.
+    """
+    from fastapi.responses import StreamingResponse
+    import csv
+    import io
+
+    query = db.query(Attendance)
+    if start_date:
+        query = query.filter(func.date(Attendance.timestamp) >= start_date)
+    if end_date:
+        query = query.filter(func.date(Attendance.timestamp) <= end_date)
+        
+    records = query.order_by(Attendance.timestamp.desc()).all()
+    
+    # Create CSV in memory
+    stream = io.StringIO()
+    writer = csv.writer(stream)
+    writer.writerow(["ID", "Name", "Status", "Timestamp"])
+    
+    for record in records:
+        writer.writerow([record.id, record.name, record.status, record.timestamp])
+        
+    stream.seek(0)
+    
+    response = StreamingResponse(iter([stream.getvalue()]), media_type="text/csv")
+    response.headers["Content-Disposition"] = "attachment; filename=attendance_report.csv"
+    return response
+
+@app.get("/search")
+def search(q: str, db: Session = Depends(get_db)):
+    """
+    Search for students or records.
+    """
+    students = db.query(Attendance.name).filter(Attendance.name.ilike(f"%{q}%")).distinct().limit(5).all()
+    return {"students": [s[0] for s in students]}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
