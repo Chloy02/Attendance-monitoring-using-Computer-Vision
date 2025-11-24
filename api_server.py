@@ -34,11 +34,15 @@ def read_root():
     return {"message": "Attendance Monitoring API is running"}
 
 @app.get("/attendance")
-def get_attendance(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def get_attendance(skip: int = 0, limit: int = 100, name: str = None, db: Session = Depends(get_db)):
     """
-    Get recent attendance records.
+    Get recent attendance records, optionally filtered by student name.
     """
-    records = db.query(Attendance).order_by(Attendance.timestamp.desc()).offset(skip).limit(limit).all()
+    query = db.query(Attendance)
+    if name:
+        query = query.filter(Attendance.name == name)
+    
+    records = query.order_by(Attendance.timestamp.desc()).offset(skip).limit(limit).all()
     return records
 
 @app.get("/stats")

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Search, Filter, MoreHorizontal } from 'lucide-react';
 
 const API_URL = 'http://localhost:8000';
@@ -86,7 +87,7 @@ const Students = () => {
 
                         <div className="pt-4 border-t border-slate-50 flex justify-between items-center">
                             <p className="text-xs text-slate-400">Last seen: {student.last_seen ? new Date(student.last_seen).toLocaleDateString() : 'Never'}</p>
-                            <button className="text-sm font-medium text-indigo-600 hover:text-indigo-700">View Profile</button>
+                            <Link to={`/students/${student.name}`} className="text-sm font-medium text-indigo-600 hover:text-indigo-700">View Profile</Link>
                         </div>
                     </div>
                 ))}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Users, UserCheck, Activity, Calendar, MoreVertical, ArrowUpRight } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from 'recharts';
 
@@ -45,9 +46,9 @@ const Dashboard = () => {
                     <h1 className="text-2xl font-bold text-slate-800">Dashboard Overview</h1>
                     <p className="text-slate-500 mt-1">Welcome back, Admin</p>
                 </div>
-                <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl font-medium transition-colors shadow-lg shadow-indigo-200">
+                <Link to="/reports" className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl font-medium transition-colors shadow-lg shadow-indigo-200">
                     Generate Report
-                </button>
+                </Link>
             </div>
 
             {/* Premium Stats Cards */}
